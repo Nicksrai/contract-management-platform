@@ -1,0 +1,8 @@
+export const CONTRACT_STATUS = Object.freeze({
+  CREATED: "CREATED",
+  APPROVED: "APPROVED",
+  SENT: "SENT",
+  SIGNED: "SIGNED",
+  LOCKED: "LOCKED",
+  REVOKED: "REVOKED",
+});
