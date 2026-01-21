@@ -1,78 +1,90 @@
 # 📄 Contract Management Platform
 
 A modern, responsive **Contract Management Platform** built using **React, Vite, and Tailwind CSS**.  
-The application focuses on reusable blueprints, contract lifecycle management, and a clean, enterprise-style user experience.
+This application demonstrates **product thinking, UI design, controlled state management, and clean frontend architecture**.
 
-This project is designed as a **frontend-focused assessment**, using mock data and local persistence without a backend.
+The project is **frontend-only**, using **mock data and LocalStorage** to simulate real-world contract workflows without a backend.
+
+---
+
+## 🔗 Live Demo
+👉 https://contract-management-platform-woad.vercel.app/
 
 ---
 
 ## 🚀 Features
 
 ### 📊 Dashboard
-- KPI tiles (Total / Active / Signed contracts)
-- Status-based filters (Active, Pending, Signed)
+- KPI overview (Total / Active / Signed contracts)
+- Status-based filters: **Active, Pending, Signed**
 - Search and sorting (by name and date)
-- Recent activity panel (last updated contracts)
-- Fully responsive layout
+- Contract lifecycle visibility
+- Fully responsive layout (mobile → desktop)
 
 ### 📑 Blueprints
 - Create reusable contract templates
-- Add dynamic fields:
+- Add configurable fields:
   - Text
   - Date
   - Checkbox
   - Signature
+- Field metadata storage (type, label, position)
 - Visual blueprint preview
-- Save and reuse blueprints
+- Reuse blueprints to generate contracts
 
 ### 📝 Contracts
-- Create contracts from predefined blueprints
-- Track contract lifecycle:
-  - Created → Approved → Sent → Signed
-- View and edit contract details
-- Status badges and timestamps
+- Generate contracts from blueprints
+- Controlled contract lifecycle:
+  - **Created → Approved → Sent → Signed → Locked**
+- Lifecycle rules enforced (no skipping states)
+- Locked contracts are read-only
+- Status badges with timestamps
 
 ### 🌙 UI / UX
-- Modern dashboard-style layout
+- Clean, dashboard-style interface
 - Dark mode support
 - Sticky navigation bar
 - Mobile-first responsive design
-- Clean typography and spacing
+- Focus on clarity and usability
 
 ---
 
 ## 🛠 Tech Stack & Justification
 
-### **Frontend Framework – React (with Vite)**
-- Chosen for its **component-based architecture**, which enables reusable, maintainable UI components.
-- Vite provides a **fast development environment** with minimal configuration and excellent performance.
+### **React + Vite**
+- Component-based architecture for scalability and reuse
+- Fast development experience with minimal configuration
+- Clean separation between pages, components, and state
 
-### **Styling – Tailwind CSS**
-- Utility-first approach allows rapid UI development while maintaining consistency.
-- Built-in responsive utilities enable a **mobile-first design**.
-- Dark mode support implemented using Tailwind’s `dark:` variants.
+### **Tailwind CSS**
+- Utility-first styling for consistent UI
+- Responsive design using built-in breakpoints
+- Dark mode implemented via `dark:` variants
 
-### **Routing – React Router DOM**
-- Enables clean, declarative client-side routing.
-- Supports scalable navigation structure for dashboards and nested pages.
+### **React Router DOM**
+- Declarative client-side routing
+- Supports scalable multi-page dashboard navigation
 
-### **State Management – Custom Hooks + LocalStorage**
-- State is managed using custom hooks (`useContractStore`, `useBlueprintStore`) to maintain a **single source of truth**.
-- LocalStorage is used to **mock backend persistence**, simulating real-world data storage without requiring a server.
-- This approach keeps the architecture simple while remaining backend-ready.
+### **State Management**
+- Custom stores (`useContractStore`, `useBlueprintStore`)
+- Centralized state handling to maintain a **single source of truth**
+- LocalStorage used to mock backend persistence
 
-### **Architecture**
-- Fully **component-based architecture**
+### **Backend**
+- Backend is **intentionally omitted**
+- All data is stored locally to focus on frontend architecture, UX, and lifecycle logic
+
+---
+
+## 🧱 Architecture & Design Decisions
+- Fully component-based structure
 - Clear separation of concerns:
   - Pages
   - Reusable UI components
-  - State management
-  - Utility functions
-
-### **Backend**
-- Backend is **not required** for this project.
-- Mock data and LocalStorage are used intentionally to simulate backend behavior while keeping the focus on frontend architecture and UX.
+  - State stores
+  - Utility logic
+- Lifecycle rules handled through controlled state transitions
+- Backend-ready architecture (can be extended easily)
 
 ---
 
@@ -88,24 +100,37 @@ src/
 │   │   ├── KPIs.jsx
 │   │   ├── ContractTable.jsx
 │   │   ├── DashboardControls.jsx
-│   │   └── RecentActivity.jsx
+│   │   └── StatusBadge.jsx
 │   ├── blueprint/
-│   │   └── BlueprintCanvas.jsx
+│   │   ├── BlueprintCanvas.jsx
+│   │   └── BlueprintForm.jsx
 │   └── contract/
-│       └── ContractForm.jsx
+│       ├── ContractForm.jsx
+│       ├── ContractView.jsx
+│       └── ContractLifecycle.jsx
 │
 ├── pages/
 │   ├── DashboardPage.jsx
 │   ├── BlueprintsPage.jsx
-│   └── ContractsPage.jsx
+│   ├── ContractsPage.jsx
+│   └── ContractDetailPage.jsx
 │
 ├── state/
 │   ├── blueprintStore.js
 │   └── contractStore.js
 │
-|
-|
+├── utils/
+│   ├── lifecycle.js
+│   └── storage.js
+│
+├── router/
+│   └── AppRouter.jsx
 │
 ├── App.jsx
 ├── main.jsx
 └── index.css
+ 
+ ⚙️ Setup Instructions
+
+ npm install
+npm run dev
